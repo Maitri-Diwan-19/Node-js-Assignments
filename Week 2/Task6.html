@@ -1,0 +1,32 @@
+<!-- create a static website that contains a start and stop button. 
+ Upon clicking the start button, something should be printed every 1 second.
+  Clicking the stop button should halt this process using setInterval. -->
+  <html>
+    <head>
+        <title>Task 6</title>
+    </head>
+    <body>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+
+        <script>
+            const start = document.getElementById('start');
+            const stop = document.getElementById('stop');
+            let intervalId;
+
+            start.addEventListener('click', () => {
+                if (!intervalId) { // Prevent multiple intervals from being created
+                    let i = 0;
+                    intervalId = setInterval(() => {
+                        console.log(i++);
+                    }, 1000);
+                }
+            });
+
+            stop.addEventListener('click', () => {
+                clearInterval(intervalId);
+                intervalId = null; // Reset intervalId so start can work again
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!-- Create a program that makes an API call and displays all the retrieved data on a web page. 
+Choose a public API (e.g., JSONPlaceholder, OpenWeatherMap) and use the fetch function to make the API request.
+ Also implement error handling (then....catch) -->
+
+<html>
+  <head>
+    <title>Task 9</title>
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody id="dataBody"></tbody>
+    </table>
+
+    <script>
+      fetch("https://jsonplaceholder.typicode.com/todos")
+        .then((response) => response.json())
+        .then((data) => {
+          const tbody = document.getElementById("dataBody");
+          data.forEach((item) => {
+            tbody.innerHTML += `
+                            <tr>
+                                <td>${item.userId}</td>
+                                <td>${item.id}</td>
+                                <td>${item.title}</td>
+                                <td>${item.completed}</td>
+                            </tr>
+                        `;
+          });
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    </script>
+  </body>
+</html>
